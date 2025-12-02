@@ -1,8 +1,0 @@
--- 创建测试用户和权限
-CREATE USER IF NOT EXISTS 'test'@'%' IDENTIFIED BY 'test';
-GRANT ALL PRIVILEGES ON *.* TO 'test'@'%';
-FLUSH PRIVILEGES;
-
--- 创建测试数据库
-CREATE DATABASE IF NOT EXISTS test;
-USE test;

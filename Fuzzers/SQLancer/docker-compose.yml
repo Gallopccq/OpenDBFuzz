@@ -8,8 +8,8 @@ services:
       - mynet
     tty: true
     stdin_open: true
-    volumes:
-      - ./sqlancer-logs:/home/sqlancer/target/logs
+    # volumes:
+    #   - ./sqlancer-logs:/home/sqlancer/target/logs
 
 networks:
   mynet:
