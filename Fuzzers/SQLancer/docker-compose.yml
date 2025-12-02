@@ -1,0 +1,16 @@
+services:
+  sqlancer:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: sqlancer
+    networks:
+      - mynet
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./sqlancer-logs:/home/sqlancer/target/logs
+
+networks:
+  mynet:
+    external: true

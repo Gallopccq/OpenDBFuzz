@@ -1,0 +1,24 @@
+services:
+  amoeba:
+    build: .
+    container_name: amoeba
+    user: postgres
+    # environment:
+      # PGHOST: postgres-12
+      # PGUSER: postgres
+      # PGPASSWORD: postgres
+      # PGDATABASE: postgres
+    networks:
+      - mynet
+    # volumes:
+      # - ./output:/home/postgres/exps
+      # - ./scripts:/workspace/scripts
+    command: tail -f /dev/null
+    tty: true
+    stdin_open: true
+    working_dir: /workspace
+    # command: tail -f /dev/null  # 保持容器运行
+
+networks:
+  mynet:
+    external: true

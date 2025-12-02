@@ -1,0 +1,75 @@
+services:
+  squirrel-sqlite:
+    build: ./sqlite/
+    container_name: squirrel-sqlite
+    user: root
+    environment:
+      AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES: 1
+      AFL_SKIP_CPUFREQ: 1
+      AFL_CUSTOM_MUTATOR_ONLY: 1
+      AFL_DISABLE_TRIM: 1
+    networks:
+      - mynet
+    # volumes:
+    #   - ./outputs/sqlite:/tmp/fuzz
+    tty: true
+    stdin_open: true
+    working_dir: /home/Squirrel
+  
+  squirrel-mysql:
+    build: ./mysql/
+    container_name: squirrel-mysql
+    user: root
+    environment:
+      AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES: 1
+      AFL_SKIP_CPUFREQ: 1
+      AFL_CUSTOM_MUTATOR_ONLY: 1
+      AFL_DISABLE_TRIM: 1
+    networks:
+      - mynet
+    # volumes:
+    #   - ./outputs/mysql:/tmp/fuzz
+    tty: true
+    stdin_open: true
+    working_dir: /home/Squirrel
+
+  squirrel-mariadb:
+    build: ./mariadb/
+    container_name: squirrel-mariadb
+    user: root
+    environment:
+      AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES: 1
+      AFL_SKIP_CPUFREQ: 1
+      AFL_CUSTOM_MUTATOR_ONLY: 1
+      AFL_DISABLE_TRIM: 1
+      http_proxy: "host:7898"
+      https_proxy: "host:7898"
+      all_proxy: "host:7898"
+    networks:
+      - mynet
+    # volumes:
+    #   - ./outputs/mariadb:/tmp/fuzz
+    tty: true
+    stdin_open: true
+    working_dir: /home/Squirrel
+
+  squirrel-postgres:
+    build: ./postgresql/
+    container_name: squirrel-postgres
+    user: root
+    environment:
+      AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES: 1
+      AFL_SKIP_CPUFREQ: 1
+      AFL_CUSTOM_MUTATOR_ONLY: 1
+      AFL_DISABLE_TRIM: 1
+    networks:
+      - mynet
+    # volumes:
+    #   - ./outputs/postgres:/tmp/fuzz
+    tty: true
+    stdin_open: true
+    working_dir: /home/Squirrel
+
+networks:
+  mynet:
+    external: true

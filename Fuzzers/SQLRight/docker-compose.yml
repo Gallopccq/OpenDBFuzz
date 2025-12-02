@@ -1,0 +1,32 @@
+services:
+  sqlright_sqlite:
+    image: steveleungsly/sqlright_sqlite:version1.2
+    container_name: sqlright_sqlite
+    networks:
+      - mynet
+    tty: true
+    stdin_open: true
+    working_dir: /home/sqlite/fuzzing/fuzz_root
+  
+  sqlright_mysql:
+    image: steveleungsly/sqlright_mysql:version1.0
+    container_name: sqlright_mysql
+    networks:
+      - mynet
+    tty: true
+    stdin_open: true
+    working_dir: /home/mysql/fuzzing/fuzz_root
+    # command: mkdir -p /home/mysql/fuzzing/Bug_Analysis && mkdir -p /home/mysql/fuzzing/fuzz_root/outputs
+  
+  sqlright_postgres:
+    image: steveleungsly/sqlright_postgres:version1.0
+    container_name: sqlright_postgres
+    networks:
+      - mynet
+    tty: true
+    stdin_open: true
+    working_dir: /home/postgres/fuzzing/fuzz_root
+
+networks:
+  mynet:
+    external: true

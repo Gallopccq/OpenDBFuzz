@@ -1,0 +1,14 @@
+services:
+  radar:
+    build: .
+    container_name: radar
+    networks:
+      - mynet
+    tty: true
+    stdin_open: true
+    working_dir: /home/radar/target
+    # command: tail -f /dev/null  # 保持容器运行
+
+networks:
+  mynet:
+    external: true

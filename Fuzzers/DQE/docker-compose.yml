@@ -1,0 +1,14 @@
+services:
+  dqe:
+    build: .
+    container_name: dqe
+    networks:
+      - mynet
+    tty: true
+    stdin_open: true
+    working_dir: /home/dqetool/target
+    # command: tail -f /dev/null  # 保持容器运行
+
+networks:
+  mynet:
+    external: true

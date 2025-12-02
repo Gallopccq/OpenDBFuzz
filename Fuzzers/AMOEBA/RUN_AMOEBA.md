@@ -27,7 +27,7 @@ start_pg13.sh
 ```shell
 cd /workspace
 eval "$(direnv hook bash)"
-timeout 1440 ./test_driver.py --workers 30 --output /home/postgres/exp/1 --queries 20000 --rewriter ./calcite-fuzzing --dbms=postgresql --validate --num_loops=100 --feedback=none --dbconf=db_conf_demo.json --query_timeout 30
+timeout 1440 ./test_driver.py --workers 30 --output /home/postgres/exps/1 --queries 20000 --rewriter ./calcite-fuzzing --dbms=postgresql --validate --num_loops=50 --feedback=none --dbconf=db_conf_demo.json --query_timeout 30
 ```
 ### Output
 The output of fuzzing for `PostgreSQL` is located in `/home/postgres/exp/1`.

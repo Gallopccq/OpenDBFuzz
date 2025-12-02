@@ -1,0 +1,15 @@
+services:
+  troc:
+    build: .
+    container_name: troc
+    networks:
+      - mynet
+    volumes:
+      - ./logs:/home/Troc/target/logs
+    tty: true
+    stdin_open: true
+    working_dir: /home/Troc/target
+
+networks:
+  mynet:
+    external: true

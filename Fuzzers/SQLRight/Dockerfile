@@ -4,6 +4,8 @@ MAINTAINER "PSU-Security-Universe"
 ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN sh -c "sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && apt-get update"
+
 RUN chmod 777 /tmp
 
 RUN apt -y update
@@ -53,7 +55,7 @@ RUN pip3 install libtmux
 WORKDIR /home/sqlite
 
 # Build AFL.
-RUN git clone https://github.com/google/AFL.git
+RUN git clone https://gitee.com/wellstudy0806/AFL.git
 
 WORKDIR /home/sqlite/AFL
 RUN sed -i  's/#define MAP_SIZE_POW2       16/#define MAP_SIZE_POW2       18/' config.h
@@ -66,7 +68,7 @@ FROM fundamental AS sqlite3_build
 
 # Build SQLite3
 WORKDIR /home/sqlite
-RUN git clone https://github.com/sqlite/sqlite.git
+RUN git clone https://gitee.com/yxchen-cx/sqlite.git
 RUN cp -r sqlite sqlite_ori
 
 ## Build instrumented SQLite3
@@ -126,7 +128,7 @@ RUN chown -R sqlite:sqlite /home/sqlite/bisecting
 # Also, setup the bisecting sqlite folder.
 USER sqlite
 WORKDIR /home/sqlite
-RUN git clone https://github.com/sqlite/sqlite.git ./sqlite_bisecting_binary
+RUN git clone https://gitee.com/yxchen-cx/sqlite.git ./sqlite_bisecting_binary
 WORKDIR /home/sqlite/sqlite_bisecting_binary
 RUN mkdir -p bld
 

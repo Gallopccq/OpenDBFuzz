@@ -1,0 +1,84 @@
+services:
+  tidb:
+    image: pingcap/tidb:v8.4.0
+    container_name: tidb-8.4.0
+    # command:
+    #   # - --store=tikv
+    #   # - --path=pd:2379
+    #   - --host=0.0.0.0
+    #   - --port=4000
+    ports:
+      - "4004:4000"
+      - "10084:10080"
+    networks:
+      - mynet
+    # depends_on:
+    #   - pd
+    #   - tikv
+    restart: on-failure
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:10080/status"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+  
+#   pd:
+#     image: pingcap/pd:v8.4.0
+#     container_name: tidb-pd-8.4.0
+#     command:
+#       - --name=pd
+#       - --client-urls=http://0.0.0.0:2379
+#       - --peer-urls=http://0.0.0.0:2380
+#       - --advertise-client-urls=http://pd:2379
+#       - --advertise-peer-urls=http://pd:2380
+#       - --data-dir=/data/pd
+#       - --initial-cluster=pd=http://pd:2380
+#     ports:
+#       - "2379:2379"
+#     volumes:
+#       - pd_data:/data/pd
+#     networks:
+#       - tidb-net
+#     restart: unless-stopped
+
+#   tikv:
+#     image: pingcap/tikv:v8.4.0
+#     container_name: tidb-tikv-8.4.0
+#     command:
+#       - --addr=0.0.0.0:20160
+#       - --advertise-addr=tikv:20160
+#       - --data-dir=/data/tikv
+#       - --pd=pd:2379
+#     volumes:
+#       - tikv_data:/data/tikv
+#     networks:
+#       - tidb-net
+#     depends_on:
+#       - pd
+#     restart: unless-stopped
+
+  
+
+#   tiflash:
+#     image: pingcap/tiflash:v8.4.0
+#     container_name: tidb-tiflash-8.4.0
+#     command:
+#       - --config-file=/etc/tiflash/config.toml
+#     volumes:
+#       - tiflash_data:/data/tiflash
+#       - ./tiflash/config.toml:/etc/tiflash/config.toml
+#     networks:
+#       - tidb-net
+#     depends_on:
+#       - pd
+#       - tikv
+#     restart: unless-stopped
+
+# volumes:
+#   pd_data:
+#   tikv_data:
+#   tiflash_data:
+
+networks:
+  mynet:
+    external: true
