@@ -4,14 +4,9 @@ services:
     container_name: apollo
     networks:
       - mynet
-    volumes:
-      - ./output:/home/postgres/exps/
-      # - ./config:/home/apollo/src/sqlfuzz/configuration
-      # - ./scripts:/scripts
     tty: true
     stdin_open: true
     working_dir: /home/apollo
-    # command: tail -f /dev/null  # 保持容器运行
 
 networks:
   mynet:

@@ -11,7 +11,7 @@ echo "MySQL        √           √    √    √     √"
 echo "SQLite       √     √     √    √          √"
 echo "MariaDB            √               √"
 echo "TiDB         √                     √      "
-echo "PostgreSQL          √     √"
+echo "PostgreSQL         √     √"
 echo ""
 echo "Legend:"
 echo "√ - Supports the testing tool"
@@ -44,8 +44,8 @@ print_progress_summary=${print_progress_summary:-true}
 use_reducer=${use_reducer:-""}
 
 # Get user input
-: ${SQLANCER_DBMS:=$(read -p "Enter database (postgres/mysql/sqlite/tidb/mariadb, default: postgres): " value; echo ${value:-postgres})}
-: ${SQLANCER_ORACLE:=$(read -p "Enter test type (PQS/DQE/DQP/TLP/NoREC/CODDTest, default: PQS): " value; echo ${value:-PQS})}
+: ${SQLANCER_DBMS:=$(read -p "Enter database (postgres/mysql/sqlite/tidb/mariadb, default: mysql): " value; echo ${value:-mysql})}
+: ${SQLANCER_ORACLE:=$(read -p "Enter oracle (PQS/DQE/DQP/TLP/NoREC/CODDTest, default: PQS): " value; echo ${value:-PQS})}
 echo ""
 echo "Tips: If you want change detailed parameter, edit in file \"config.properties\""
 echo ""
